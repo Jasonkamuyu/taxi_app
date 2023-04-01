@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     UserProvider _user = Provider.of<UserProvider>(context, listen: false);
 
-    if (_user.userModel.token != preferences.getString('token')) {
-      Provider.of<UserProvider>(context, listen: false).saveDeviceToken();
-    }
+    // if (_user.userModel.token != preferences.getString('token')) {
+    Provider.of<UserProvider>(context, listen: false).saveDeviceToken();
+    // }
   }
 
   @override

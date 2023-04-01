@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_app/helpers/style.dart';
@@ -115,10 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: BoxDecoration(
                             color: black,
                             borderRadius: BorderRadius.circular(5)),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
                             children: <Widget>[
                               CustomText(
                                 text: "Login",
@@ -135,8 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       changeScreen(context, RegistrationScreen());
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: <Widget>[
                         CustomText(
                           text: "Register here",

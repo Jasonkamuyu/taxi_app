@@ -11,7 +11,7 @@ class UserModel {
   static const TOKEN = "token";
 
   String? _id;
-  String ? _name;
+  String? _name;
   String? _email;
   String? _phone;
   String? _token;

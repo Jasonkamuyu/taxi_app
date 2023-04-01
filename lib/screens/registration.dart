@@ -1,6 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 import '../helpers/screen_navigation.dart';
 import '../helpers/style.dart';
@@ -157,23 +158,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: GestureDetector(
                       onTap: () async {
                         if (!await authProvider.signUp()) {
-
-                          
                           ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Registration failed!")));
+                              const SnackBar(
+                                  content: Text("Registration failed!")));
                           return;
                         }
                         authProvider.clearController();
-                        changeScreenReplacement(context, const MyHomePage());
+                        changeScreenReplacement(context, MyHomePage());
                       },
                       child: Container(
                         decoration: BoxDecoration(
                             color: black,
                             borderRadius: BorderRadius.circular(5)),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
                             children: <Widget>[
                               CustomText(
                                 text: "Register",
@@ -192,10 +193,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: <Widget>[
                         CustomText(
                           text: "Login here",
-                          size: 20, color: null,
+                          size: 20,
+                          color: null,
                         ),
                       ],
                     ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -192,8 +194,7 @@ class AppStateProvider with ChangeNotifier {
     }
   }
 
-  Future sendRequest(
-      { LatLng ? origin,  LatLng ? destination}) async {
+  Future sendRequest({LatLng? origin, LatLng? destination}) async {
     LatLng _org;
     LatLng _dest;
 
@@ -417,13 +418,14 @@ class AppStateProvider with ChangeNotifier {
                 borderRadius: BorderRadius.circular(20.0)), //this right here
             child: SizedBox(
               height: 200,
-              child: const Padding(
+              child: Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      CustomText(
+                      const CustomText(
                         text: "DRIVERS NOT FOUND! \n TRY REQUESTING AGAIN",
                         color: null,
                         size: null,
@@ -446,8 +448,9 @@ class AppStateProvider with ChangeNotifier {
               child: Column(
                 children: [
                   const SizedBox(height: 10),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       CustomText(
                         text: "7 MIN AWAY",

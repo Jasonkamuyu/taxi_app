@@ -8,7 +8,7 @@ import 'locators/service_locator.dart';
 import 'screens/home.dart';
 import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -44,11 +44,11 @@ class MyApp extends StatelessWidget {
         return Splash();
       case Status.Unauthenticated:
       case Status.Authenticating:
-        return const LoginScreen();
+        return LoginScreen();
       case Status.Authenticated:
-        return const MyHomePage();
+        return MyHomePage();
       default:
-        return const LoginScreen();
+        return LoginScreen();
     }
   }
 }
