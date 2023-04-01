@@ -7,6 +7,7 @@ import 'package:taxi_app/helpers/constants.dart';
 
 import '../models/user.dart';
 import '../services/user_service.dart';
+
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
 class UserProvider with ChangeNotifier {
@@ -15,8 +16,8 @@ class UserProvider with ChangeNotifier {
 
   User ? _user;
   Status _status = Status.Uninitialized;
-  UserServices _userServices = UserServices();
-  UserModel ?  _userModel;
+  final UserServices _userServices = UserServices();
+  UserModel ? _userModel;
 
 //  getter
   UserModel get userModel => _userModel!;

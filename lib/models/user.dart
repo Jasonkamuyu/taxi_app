@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
@@ -12,18 +10,18 @@ class UserModel {
   static const RATING = "rating";
   static const TOKEN = "token";
 
-  String ? _id;
+  String? _id;
   String ? _name;
-  String ?  _email;
-  String ? _phone;
-  String ? _token;
+  String? _email;
+  String? _phone;
+  String? _token;
 
-  int ? _votes;
-  int ? _trips;
-  double ? _rating;
+  int? _votes;
+  int? _trips;
+  double? _rating;
 
 //  getters
-  String get name => _name!;
+  String get name => _name ?? "";
   String get email => _email!;
   String get id => _id!;
   String get token => _token!;

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       case Status.Authenticating:
         return const LoginScreen();
       case Status.Authenticated:
-        return  MyHomePage();
+        return const MyHomePage();
       default:
         return const LoginScreen();
     }

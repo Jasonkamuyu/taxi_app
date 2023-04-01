@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_geocoder/geocoder.dart';
 
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import "package:google_maps_webservice/places.dart";
-
 
 import '../helpers/constants.dart';
 import '../helpers/screen_navigation.dart';
@@ -26,8 +23,8 @@ import '../widgets/trip_draggable_widget.dart';
 import 'login.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({ Key ? key,  this.title}) : super(key: key);
-  final String ? title;
+  const MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -63,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             UserAccountsDrawerHeader(
                 accountName: CustomText(
-                  text: userProvider.userModel.name ?? "This is null",
+                  text: userProvider.userModel.name,
                   size: 18,
                   weight: FontWeight.bold,
                 ),
@@ -71,11 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: userProvider.userModel.email ?? "This is null",
                 )),
             ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: CustomText(text: "Log out"),
+              leading: const Icon(Icons.exit_to_app),
+              title: const CustomText(text: "Log out"),
               onTap: () {
                 userProvider.signOut();
-                changeScreenReplacement(context, LoginScreen());
+                changeScreenReplacement(context, const LoginScreen());
               },
             )
           ],
@@ -94,26 +91,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          child: appState.driverArrived ? Container(
-                            color: green,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: CustomText(
-                                text: "Meet driver at the pick up location",
-                                color: Colors.white,
-                              ),
-                            ),
-                          ) : Container(
-                            color: primary,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: CustomText(
-                                text: "Meet driver at the pick up location",
-                                weight: FontWeight.w300,
-                                color: white,
-                              ),
-                            ),
-                          ),
+                          child: appState.driverArrived
+                              ? Container(
+                                  color: green,
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: CustomText(
+                                      text:
+                                          "Meet driver at the pick up location",
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  color: primary,
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: CustomText(
+                                      text:
+                                          "Meet driver at the pick up location",
+                                      weight: FontWeight.w300,
+                                      color: white,
+                                    ),
+                                  ),
+                                ),
                         ),
                       ],
                     ),
@@ -133,20 +134,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Container(
                             color: primary,
                             child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: RichText(text: TextSpan(
-                                children: [
+                                padding: const EdgeInsets.all(16),
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                  const TextSpan(
+                                      text: "You'll reach your desiation in \n",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w300)),
                                   TextSpan(
-                                    text: "You\'ll reach your desiation in \n",
-                                    style: TextStyle(fontWeight: FontWeight.w300)
-                                  ),
-                                  TextSpan(
-                                      text: appState.routeModel?.timeNeeded?.text ?? "",
-                                      style: TextStyle(fontSize: 22)
-                                  ),
-                                ]
-                              ))
-                            ),
+                                      text: appState
+                                              .routeModel?.timeNeeded?.text ??
+                                          "",
+                                      style: const TextStyle(fontSize: 22)),
+                                ]))),
                           ),
                         ),
                       ],
@@ -177,8 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             //  ANCHOR Draggable DRIVER
             Visibility(
-                visible: appState.show == Show.TRIP,
-                child: TripWidget()),
+                visible: appState.show == Show.TRIP, child: TripWidget()),
           ],
         ),
       ),
@@ -189,14 +188,14 @@ class _MyHomePageState extends State<MyHomePage> {
 class MapScreen extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldState;
 
-  MapScreen(this.scaffoldState);
+  const MapScreen(this.scaffoldState, {Key? key}) : super(key: key);
 
   @override
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
-  GoogleMapsPlaces ? googlePlaces;
+  GoogleMapsPlaces? googlePlaces;
   TextEditingController destinationController = TextEditingController();
   Color darkBlue = Colors.black;
   Color grey = Colors.grey;
@@ -233,7 +232,7 @@ class _MapScreenState extends State<MapScreen> {
                 top: 10,
                 left: 15,
                 child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.menu,
                       color: primary,
                       size: 30,
@@ -284,19 +283,16 @@ class _MapScreenState extends State<MapScreen> {
           );
   }
 
-  Future<Null> displayPrediction(Prediction p) async {
-    if (p != null) {
-      PlacesDetailsResponse detail =
-          await places.getDetailsByPlaceId(p!.placeId!);
+  Future<void> displayPrediction(Prediction p) async {
+    PlacesDetailsResponse detail = await places.getDetailsByPlaceId(p.placeId!);
 
-      var placeId = p.placeId;
-      double lat = detail.result.geometry!.location.lat;
-      double lng = detail.result.geometry!.location.lng;
+    var placeId = p.placeId;
+    double lat = detail.result.geometry!.location.lat;
+    double lng = detail.result.geometry!.location.lng;
 
-      var address = await Geocoder.local.findAddressesFromQuery(p!.description!);
+    var address = await Geocoder.local.findAddressesFromQuery(p.description!);
 
-      print(lat);
-      print(lng);
-    }
+    print(lat);
+    print(lng);
   }
 }

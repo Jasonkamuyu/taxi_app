@@ -157,18 +157,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: GestureDetector(
                       onTap: () async {
                         if (!await authProvider.signUp()) {
+
+                          
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Registration failed!")));
+                              const SnackBar(content: Text("Registration failed!")));
                           return;
                         }
                         authProvider.clearController();
-                        changeScreenReplacement(context, MyHomePage());
+                        changeScreenReplacement(context, const MyHomePage());
                       },
                       child: Container(
                         decoration: BoxDecoration(
                             color: black,
                             borderRadius: BorderRadius.circular(5)),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
