@@ -7,16 +7,15 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'package:provider/provider.dart';
 
-
 import '../helpers/style.dart';
 import '../providers/app_state.dart';
 import '../providers/user.dart';
 import 'custom_text.dart';
 
 class PaymentMethodSelectionWidget extends StatelessWidget {
-  final GlobalKey<ScaffoldState> ? scaffoldState;
+  final GlobalKey<ScaffoldState>? scaffoldState;
 
-  const PaymentMethodSelectionWidget({Key ? key, this.scaffoldState})
+  const PaymentMethodSelectionWidget({Key? key, this.scaffoldState})
       : super(key: key);
 
   @override
@@ -47,7 +46,7 @@ class PaymentMethodSelectionWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: CustomText(
-                    text: "How do you want to pay,\n\$${appState.ridePrice}",
+                    text: "How do you want to pay,\n\KES${appState.ridePrice}",
                     size: 24,
                     weight: FontWeight.bold,
                   ),

@@ -8,7 +8,6 @@ import 'package:google_maps_webservice/places.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../helpers/constants.dart';
 import '../helpers/style.dart';
 import '../providers/app_state.dart';
@@ -16,9 +15,9 @@ import '../providers/user.dart';
 import 'custom_text.dart';
 
 class PickupSelectionWidget extends StatelessWidget {
-  final GlobalKey<ScaffoldState> ? scaffoldState;
+  final GlobalKey<ScaffoldState>? scaffoldState;
 
-  const PickupSelectionWidget({Key ? key, this.scaffoldState}) : super(key: key);
+  const PickupSelectionWidget({Key? key, this.scaffoldState}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
@@ -68,13 +67,13 @@ class PickupSelectionWidget extends StatelessWidget {
                     onTap: () async {
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
-                      Prediction ? p = await PlacesAutocomplete.show(
+                      Prediction? p = await PlacesAutocomplete.show(
                           context: context,
                           apiKey: GOOGLE_MAPS_API_KEY,
                           mode: Mode.overlay, // Mode.fullscreen
                           // language: "pt",
                           components: [
-                             Component(Component.country,
+                            Component(Component.country,
                                 preferences.getString(COUNTRY)!)
                           ]);
                       PlacesDetailsResponse detail =
@@ -87,7 +86,7 @@ class PickupSelectionWidget extends StatelessWidget {
                       LatLng coordinates = LatLng(lat, lng);
                       appState.setPickCoordinates(coordinates: coordinates);
                       appState.changePickupLocationAddress(
-                          address: p!.description);
+                          address: p.description);
                     },
                     textInputAction: TextInputAction.go,
                     controller: appState.pickupLocationControlelr,
@@ -128,7 +127,7 @@ class PickupSelectionWidget extends StatelessWidget {
                           showWidget: Show.PAYMENT_METHOD_SELECTION);
                     },
                     child: Text(
-                      "Comfirm Pickup",
+                      "Confirm Pickup",
                       style: TextStyle(color: white, fontSize: 16),
                     ),
                   ),

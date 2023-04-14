@@ -212,7 +212,7 @@ class AppStateProvider with ChangeNotifier {
 
     if (origin == null) {
       ridePrice =
-          double.parse((routeModel!.distance!.value! / 500).toStringAsFixed(2));
+          double.parse((routeModel!.distance!.value! / 50).toStringAsFixed(0));
     }
     List<Marker> mks = _markers
         .where((element) => element.markerId.value == "location")
@@ -242,8 +242,8 @@ class AppStateProvider with ChangeNotifier {
     String polyId = uuid.v1();
     _poly.add(Polyline(
         polylineId: PolylineId(polyId),
-        width: 12,
-        color: color ?? primary,
+        width: 5,
+        color: color ?? active,
         onTap: () {},
         points: _convertToLatLong(_decodePoly(decodeRoute))));
     notifyListeners();
@@ -261,7 +261,7 @@ class AppStateProvider with ChangeNotifier {
 
   List _decodePoly(String poly) {
     var list = poly.codeUnits;
-    var lList = List.empty();
+    var lList = List.empty().toList();
     int index = 0;
     int len = poly.length;
     int c = 0;
